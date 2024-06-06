@@ -152,6 +152,14 @@ public class ReusableMethods {
 
 //---------------------------------------------------------------------------------------------------------------------------
 
+
+	public static Alert waitForAlert(WebDriver driver, int timeout) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		return wait.until(ExpectedConditions.alertIsPresent());
+	}
+
+//---------------------------------------------------------------------------------------------------------------------------
+
 	//Yukardakinin aynısına benzer. Fakat burda seçilebilirliği bekleriz
 	public static WebElement waitForClickablility(WebElement element, int timeout) {
 		// WebDriverWait nesnesi oluşturulur, belirtilen süre (timeout) kadar bekleyecek şekilde ayarlanır
@@ -253,6 +261,17 @@ public class ReusableMethods {
 		jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight/2);");
 	}
 
+	//Sayfanın en altına inmek için kullanılır
+	public static void scrollToPageDown(WebDriver driver) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	}
+
+	//Sayfanın en sağına gitmek için kullanılır
+	public static void scrollToRight(WebDriver driver) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("window.scrollTo(document.body.scrollToWidth,0);");
+	}
 
 	public static void clickCheckBox(WebDriver driver, WebElement element) {
 		Actions actions = new Actions(driver);
